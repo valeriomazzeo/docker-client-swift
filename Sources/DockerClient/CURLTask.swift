@@ -9,7 +9,9 @@
 import Foundation
 import Ccurl
 
-public final class CURLTask {
+final class CURLTask {
+
+    typealias Response = (statusCode: Int, headers: Data?, body: Data?)
 
     // MARK: Initialization
 
@@ -88,7 +90,7 @@ public final class CURLTask {
 
     public let request: URLRequest
 
-    public private(set) var response: HTTPURLResponse? = nil
+    public private(set) var response: CURLTask.Response? = nil
 
     // MARK: CURL
 
@@ -102,7 +104,7 @@ public final class CURLTask {
 
     private var bodyBytes: [UInt8] = []
 
-    public func perform() throws -> (statusCode: Int, headers: Data?, body: Data?) {
+    public func perform() throws -> Response {
 
         guard self.response == nil else {
             throw Error.improperCURLTaskUse
@@ -157,11 +159,15 @@ public final class CURLTask {
 
         let statusCode: Int = try self.getInfo(CURLINFO_RESPONSE_CODE)
 
-        return (
+        let response = (
             statusCode: statusCode,
             headers: self.headerBytes.isEmpty ? nil : Data(self.headerBytes),
             body: self.bodyBytes.isEmpty ? nil : Data(self.bodyBytes)
         )
+
+        self.response = response
+
+        return response
     }
 
     private func appendSList(key: UInt32, value: String) {
@@ -224,7 +230,7 @@ public final class CURLTask {
     }
 }
 
-public extension CURLTask {
+extension CURLTask {
 
     public enum Error: Swift.Error {
         case curlInitializationError

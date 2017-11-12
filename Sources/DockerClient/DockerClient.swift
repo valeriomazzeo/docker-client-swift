@@ -11,6 +11,8 @@ import Ccurl
 
 public final class DockerClient {
 
+    public typealias Response = (statusCode: Int, headers: Data?, body: Data?)
+
     // MARK: Initialization
 
     public init(unixSocketPath: String = "/var/run/docker.sock") {
@@ -23,7 +25,7 @@ public final class DockerClient {
 
     // MARK: Request
 
-    public func respond(to request: URLRequest) throws -> (statusCode: Int, headers: Data?, body: Data?) {
+    public func respond(to request: URLRequest) throws -> DockerClient.Response {
 
         return try CURLTask(request: request, unixSocketPath: self.unixSocketPath).perform()
     }
