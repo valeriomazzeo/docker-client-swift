@@ -1,7 +1,8 @@
 # docker-client-swift
 
 ![Swift](https://img.shields.io/badge/swift-4.0.2-orange.svg)
-![Platforms](https://img.shields.io/badge/platforms-OS X | Linux-lightgrey.svg)
+![Platform](https://img.shields.io/badge/platform-OSX-lightgrey.svg)
+![Platform](https://img.shields.io/badge/platform-Linux-lightgrey.svg)
 
 A lightweight Swift client for the Docker Remote API.
 
