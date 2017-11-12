@@ -8,7 +8,7 @@ A lightweight Swift client for the Docker Remote API.
 
 ## Get Started
 
-Since `docker-client-swift` depends on `curl`, make sure it is available on the system.
+Since `docker-client-swift` depends on `curl`  (7.40.0 and higher), make sure it is available on the system.
 
 Mac OS X already includes a version of `curl`, on Linux you'll have to install it through a system package manager.
 
