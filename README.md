@@ -8,7 +8,7 @@ A lightweight Swift client for the Docker Remote API.
 
 ## Get Started
 
-Since `docker-client-swift` depends on `curl`  (7.40.0 and higher), make sure it is available on the system.
+Since `docker-client-swift` depends on `curl`  (`7.40.0` and higher), make sure it is available on the system.
 
 Mac OS X already includes a version of `curl`, on Linux you'll have to install it through a system package manager.
 
@@ -22,7 +22,7 @@ For example on Ubuntu: `apt-get install libcurl4-openssl-dev`
 let docker = DockerClient(unixSocketPath: "/var/run/docker.sock")
 
 // Create an URLRequest
-let url = URL(string: "http:/1.32/containers/json")!
+let url = URL(string: "http:/v1.32/containers/json")!
 let request = URLRequest(url: url)
 
 let result = try docker.respond(to: request)
